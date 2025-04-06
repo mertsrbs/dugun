@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Düğün Geri Sayım</title>
+</head>
+<body>
+  <h1>Düğünümüze Geri Sayım</h1>
+  <p>Yaklaşık olarak <span id="countdown"></span> kalan süre!</p>
+
+  <!-- Fotoğrafınızı buraya ekleyin -->
+  <img src="https://i.imgur.com/XMJ2u8Q.jpg" alt="Düğün Fotoğrafı" id="weddingPhoto">
+
+  <script>
+    // Düğün tarihi
+    var weddingDate = new Date("Sep 6, 2025 20:00:00").getTime();
+
+    // Geri sayım işlemi
+    var countdown = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = weddingDate - now;
+
+      // Gün, saat, dakika ve saniye hesapla
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Geri sayımı ekrana yazdır
+      document.getElementById("countdown").innerHTML = days + "g " + hours + "s " + minutes + "d " + seconds + "s ";
+
+      // Geri sayım bittiğinde
+      if (distance < 0) {
+        clearInterval(countdown);
+        document.getElementById("countdown").innerHTML = "Düğünümüz başladı!";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
